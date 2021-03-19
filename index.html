@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Phone</title>
+</head>
+<body>
+<script>
+    class Mobile{
+        constructor() {
+            this.batery = 0;
+            this.messageCurren = "";
+            this.messageReceived = [];
+            this.messageSent = [];
+            this.status = status;
+        }
+        checkStatus(){
+            return this.status;
+        }
+        switchStatus(value){
+            this.status = value;
+        }
+        chargeBatery(){
+            this.batery = 100;
+        }
+        writeMessage(str){
+            if(this.checkStatus() == true){
+                this.subtractBatery();
+                this.messageCurren = str;
+            }
+            else alert("Please turn on mobile phone")
+        }
+        receiveMessage(str){
+            if(this.checkStatus() == true){
+                this.subtractBatery();
+                this.messageReceived.push(str);
+            }
+        }
+        sentMessage(str,obj){
+            if(this.checkStatus() == true){
+                this.subtractBatery();
+                this.messageSent.push(str);
+                return obj.receiveMessage(str);
+            }}
+        showMessageReceived(){
+                if(this.checkStatus() == true){
+                    this.subtractBatery();
+                    let message = "";
+                    for(let i of this.messageReceived){
+                        message += `Message ${i}`;
+                    }
+                    return message;
+                }
+            }
+        showMessageSend(){
+                if(this.checkStatus() == true){
+                    this.subtractBatery();
+                    let message = "";
+                    for(let i of this.messageSend){
+                        message += `Message ${i}: ${this.messageSend[i]}<br>`;
+                    }
+                }
+            }
+        subtractBatery(){
+            if(this.batery == 0){
+                alert("Het pin");
+            }
+            else this.batery--;
+        }
+    }
+    let nokia = new Mobile();
+    let iphone = new Mobile();
+
+    nokia.switchStatus(true);
+    iphone.switchStatus(true);
+    nokia.chargeBatery();
+    iphone.chargeBatery();
+    nokia.writeMessage("hello!");
+    nokia.sentMessage(nokia.messageCurren,iphone);
+    alert(iphone.showMessageReceived());
+
+</script>
+</body>
+</html>
