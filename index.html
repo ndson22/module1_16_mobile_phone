@@ -15,13 +15,15 @@
             this.messageCurren = "";
             this.messageReceived = [];
             this.messageSent = [];
-            this.status = status;
+            this.status = false;
         }
         checkStatus(){
             return this.status;
         }
         switchStatus(value){
-            this.status = value;
+            if(this.status == true){
+                this.status == false
+            } else this.status == true;
         }
         chargeBatery(){
             this.batery = 100;
